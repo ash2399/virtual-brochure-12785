@@ -1,99 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Virtual Brochure</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Virtual Brochure</title>
   <style>
     body {
       margin: 0;
       background-color: #1c1c1c;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       color: #fff;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       min-height: 100vh;
+      padding: 10px 0 calc(env(safe-area-inset-bottom) + 30px);
     }
 
     #container {
+      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex: 1;
       width: 100%;
-      padding: 10px 0;
+      max-width: 100%;
     }
 
     #brochure-page {
       width: 100%;
       height: auto;
-      max-width: 900px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      max-width: 700px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     }
 
     #hint {
-      font-size: 15px;
+      font-size: 14px;
       color: #aaa;
+      text-align: center;
       margin-top: 10px;
       margin-bottom: 8px;
-      text-align: center;
+      line-height: 1.4;
     }
 
     #buttons {
       display: flex;
       justify-content: center;
-      margin-bottom: 20px;
+      gap: 14px;
     }
 
     .nav-button {
-      background-color: rgba(50, 50, 50, 0.8);
-      color: #fff;
+      background-color: rgba(60, 60, 60, 0.85);
       border: none;
-      padding: 14px 30px;
-      margin: 0 6px;
-      border-radius: 10px;
-      font-size: 16px;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-      transition: background 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      transition: background 0.3s ease;
     }
 
     .nav-button:hover {
-      background-color: rgba(85, 85, 85, 0.9);
+      background-color: rgba(100, 100, 100, 0.9);
     }
-  </style>
-</head>
-<body>
-  <div id="container">
-    <img id="brochure-page" src="1.png" alt="Brochure Page" />
-  </div>
 
-  <div id="hint">
-    Tap arrows to flip pages • Long press to save
-  </div>
-
-  <div id="buttons">
-    <button id="prev" class="nav-button">← Previous</button>
-    <button id="next" class="nav-button">Next →</button>
-  </div>
-
-  <script>
-    const pages = ["1.png", "2.png", "3.png", "4.png"];
-    let current = 0;
-    const img = document.getElementById("brochure-page");
-
-    document.getElementById("prev").addEventListener("click", () => {
-      current = (current - 1 + pages.length) % pages.length;
-      img.src = pages[current];
-    });
-
-    document.getElementById("next").addEventListener("click", () => {
-      current = (current + 1) % pages.length;
-      img.src = pages[current];
-    });
-  </script>
-</body>
-</html>
+    /* Make sure buttons never go off screen */
+    @media (max-height: 750px) {
+      #b
