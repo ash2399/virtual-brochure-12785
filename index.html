@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Virtual Brochure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <style>
+    body {
+      margin: 0;
+      background-color: #1c1c1c; /* dark aesthetic background */
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    #container {
+      width: 100%;
+      max-width: 800px;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 15px;
+    }
+
+    #brochure-page {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    /* Buttons */
+    .nav-button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      margin: 5px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      transition: background 0.3s;
+    }
+
+    .nav-button:hover {
+      background-color: #555;
+    }
+
+    #hint {
+      font-size: 14px;
+      color: #ccc;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <img id="brochure-page" src="1.png" alt="Brochure Page" />
+  </div>
+
+  <div id="buttons">
+    <button id="prev" class="nav-button">← Previous</button>
+    <button id="next" class="nav-button">Next →</button>
+  </div>
+
+  <div id="hint">
+    Tap arrows to view the next page. Long press image to save.
+  </div>
+
+  <script>
+    const pages = ["1.png","2.png","3.png","4.png"];
+    let current = 0;
+    const img = document.getElementById("brochure-page");
+
+    document.getElementById("prev").addEventListener("click", () => {
+      current = (current - 1 + pages.length) % pages.length;
+      img.src = pages[current];
+    });
+
+    document.getElementById("next").addEventListener("click", () => {
+      current = (current + 1) % pages.length;
+      img.src = pages[current];
+    });
+  </script>
+</body>
+</html>
