@@ -68,4 +68,40 @@
 
     /* Make sure buttons never go off screen */
     @media (max-height: 750px) {
-      #b
+      #buttons {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <img id="brochure-page" src="1.png" alt="Brochure Page">
+  </div>
+
+  <div id="hint">
+    Tap arrows to flip pages<br>Long press to save
+  </div>
+
+  <div id="buttons">
+    <button id="prev" class="nav-button">← Prev</button>
+    <button id="next" class="nav-button">Next →</button>
+  </div>
+
+  <script>
+    const pages = ["1.png", "2.png", "3.png", "4.png"];
+    let current = 0;
+    const img = document.getElementById("brochure-page");
+
+    document.getElementById("prev").addEventListener("click", () => {
+      current = (current - 1 + pages.length) % pages.length;
+      img.src = pages[current];
+    });
+
+    document.getElementById("next").addEventListener("click", () => {
+      current = (current + 1) % pages.length;
+      img.src = pages[current];
+    });
+  </script>
+</body>
+</html>
