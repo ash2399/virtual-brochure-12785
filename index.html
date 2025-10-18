@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Virtual Brochure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <style>
+    body {
+      margin: 0;
+      background-color: #2e2e2e; /* dark grey */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Container to allow pinch-to-zoom */
+    #container {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #brochure-page {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      touch-action: pinch-zoom; /* enable pinch gestures */
+    }
+
+    /* Arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: white;
+      background-color: rgba(0,0,0,0.4); /* translucent background */
+      padding: 10px;
+      border-radius: 50%;
+      z-index: 10;
+      user-select: none;
+    }
+    #left-arrow { left: 10px; }
+    #right-arrow { right: 10px; }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <img id="brochure-page" src="1.png" alt="Brochure Page" />
+  </div>
+
+  <!-- Arrows -->
+  <div id="left-arrow" class="arrow">←</div>
+  <div id="right-arrow" class="arrow">→</div>
+
+  <script>
+    const pages = ["1.png", "2.png", "3.png", "4.png"];
+    let current = 0;
+    const img = document.getElementById("brochure-page");
+
+    // Arrow click navigation with looping
+    document.getElementById("left-arrow").addEventListener("click", () => {
+      current = (current - 1 + pages.length) % pages.length;
+      img.src = pages[current];
+    });
+
+    document.getElementById("right-arrow").addEventListener("click", () => {
+      current = (current + 1) % pages.length;
+      img.src = pages[current];
+    });
+
+    // Swipe navigation for touch devices with looping
+    let startX = 0;
+    img.addEventListener("touchstart", function(e) {
+      startX = e.touches[0].clientX;
+    }, false);
+
+    img.addEventListener("touchend", function(e) {
+      let endX = e.changedTouches[0].clientX;
+      if (endX < startX - 30) { // swipe left
+        current = (current + 1) % pages.length;
+      } else if (endX > startX + 30) { // swipe right
+        current = (current - 1 + pages.length) % pages.length;
+      }
+      img.src = pages[current];
+    }, false);
+  </script>
+</body>
+</html>
