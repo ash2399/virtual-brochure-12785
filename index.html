@@ -23,23 +23,37 @@
       align-items: center;
       flex: 1;
       width: 100%;
+      padding: 10px 0;
     }
 
     #brochure-page {
       width: 100%;
       height: auto;
-      max-width: 900px; /* limits width on large screens */
+      max-width: 900px;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
 
-    /* Navigation buttons */
+    #hint {
+      font-size: 15px;
+      color: #aaa;
+      margin-top: 10px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    #buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
     .nav-button {
       background-color: rgba(50, 50, 50, 0.8);
       color: #fff;
       border: none;
       padding: 14px 30px;
-      margin: 8px;
+      margin: 0 6px;
       border-radius: 10px;
       font-size: 16px;
       cursor: pointer;
@@ -50,19 +64,6 @@
     .nav-button:hover {
       background-color: rgba(85, 85, 85, 0.9);
     }
-
-    #buttons {
-      display: flex;
-      justify-content: center;
-      margin: 15px 0;
-    }
-
-    #hint {
-      font-size: 15px;
-      color: #aaa;
-      margin-bottom: 20px;
-      text-align: center;
-    }
   </style>
 </head>
 <body>
@@ -70,13 +71,13 @@
     <img id="brochure-page" src="1.png" alt="Brochure Page" />
   </div>
 
+  <div id="hint">
+    Tap arrows to flip pages • Long press to save
+  </div>
+
   <div id="buttons">
     <button id="prev" class="nav-button">← Previous</button>
     <button id="next" class="nav-button">Next →</button>
-  </div>
-
-  <div id="hint">
-    Tap arrows to flip pages • Long press to save
   </div>
 
   <script>
